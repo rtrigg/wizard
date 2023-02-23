@@ -1,14 +1,14 @@
 from wizard import Wizard, Shop
 
 def test_eat():
-    wizard = Wizard("Bob", 0)
+    wizard = Wizard()
     initial_food = wizard.food
     wizard.eat()
     assert wizard.food > initial_food, f"Hunger meter not filled after eating. Expected > {initial_food}, but got {wizard.food}."
 
 
 def test_buy_item():
-    wizard = Wizard("Bob")
+    wizard = Wizard()
     shop = Shop()
     initial_inventory = wizard.inventory.copy()
     item_to_buy = shop.items[0]
@@ -19,7 +19,17 @@ def test_buy_item():
 
 
 def test_wizard_starve():
-    wizard = Wizard("Bob")
+    wizard = Wizard()
     wizard.food = -1
     wizard.update()
     assert not wizard.alive, "Wizard did not die when food fell below 0."
+
+
+
+def test_wizard_death_mana():
+    wizard = Wizard()
+    wizard.mana = -1
+    wizard.update()
+    assert not wizard.alive, "Wizard did not die when mana below 0."
+
+

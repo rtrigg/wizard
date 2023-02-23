@@ -3,14 +3,15 @@ from dataclasses import dataclass, field
 @dataclass
 class Wizard:
     """Class for keeping track of Wizard."""
-    name: str
+    name: str = "Bob"
     inventory: list = field(default_factory=lambda: [])
     food: int = 25
     gold: int = 25
     alive: bool = True
 
     def update(self):
-        if self.food < 0:
+        self.food -= 1
+        if self.food < 0 or self.mana < 0:
             self.alive = False
 
     def eat(self) -> None:
