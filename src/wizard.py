@@ -5,11 +5,16 @@ class Wizard:
     """Class for keeping track of Wizard."""
     name: str
     inventory: list = field(default_factory=lambda: [])
-    satiety: int = 25
+    food: int = 25
     gold: int = 25
+    alive: bool = True
+
+    def update(self):
+        if self.food < 0:
+            self.alive = False
 
     def eat(self) -> None:
-        self.satiety += 10
+        self.food += 10
 
     def buy_item(self, shop, item) -> None:
         self.gold -= shop.sell(item)
