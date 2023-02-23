@@ -58,7 +58,7 @@ def test_wizard_mana():
     wizard.cast_spell(spell_power)
     assert (
         wizard.mana == mana - spell_power
-    ), f"Wizard's mana did not decrease by {spell_mana} after casting a spell."
+    ), f"Wizard's mana did not decrease by {spell_power} after casting a spell."
 
 
 def test_wizard_sleep():
