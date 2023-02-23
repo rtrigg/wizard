@@ -6,6 +6,8 @@ class Wizard:
     name: str = "Bob"
     inventory: list = field(default_factory=lambda: [])
     food: int = 25
+    mana: int = 25
+    power: int = 0
     gold: int = 25
     alive: bool = True
 
@@ -20,6 +22,10 @@ class Wizard:
     def buy_item(self, shop, item) -> None:
         self.gold -= shop.sell(item)
         self.inventory.append(item)
+
+    def cast_spell(self, spell_power):
+        self.power += spell_power
+        self.mana -= spell_power
 
 
 @dataclass

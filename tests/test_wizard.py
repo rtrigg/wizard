@@ -33,3 +33,18 @@ def test_wizard_death_mana():
     assert not wizard.alive, "Wizard did not die when mana below 0."
 
 
+def test_wizard_power():
+    wizard = Wizard()
+    power = wizard.power
+    spell_power = 3
+    wizard.cast_spell(spell_power)
+    assert wizard.power == power + spell_power, f"Wizard's power did not increase by {spell_power} after casting a spell."
+
+
+def test_wizard_mana():
+    wizard = Wizard()
+    mana = wizard.mana
+    spell_power = 3
+    wizard.cast_spell(spell_power)
+    assert wizard.mana == mana - spell_power, f"Wizard's mana did not decrease by {spell_mana} after casting a spell."
+
