@@ -75,6 +75,7 @@ def main():
         else:
             _ = os.system("clear")
         print(wizard)
+        print(f"{wizard.name}'s stuff: {wizard.inventory}")
         options = ["sleep", "eat", "cast"]
         user_input = ""
         input_message = f"What will {wizard.name} do?\n"
