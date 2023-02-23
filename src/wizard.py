@@ -26,7 +26,7 @@ class Wizard:
             case "eat":
                 self.eat()
             case "cast":
-                self.cast()
+                self.cast_spell(5)
 
     def eat(self) -> None:
         self.food += 10
@@ -38,6 +38,10 @@ class Wizard:
     def cast_spell(self, spell_power):
         self.power += spell_power
         self.mana -= spell_power
+
+    def sleep(self):
+        self.mana += 20
+        self.food -= 10
 
 
 @dataclass

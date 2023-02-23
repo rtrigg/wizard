@@ -59,3 +59,12 @@ def test_wizard_mana():
     assert (
         wizard.mana == mana - spell_power
     ), f"Wizard's mana did not decrease by {spell_mana} after casting a spell."
+
+
+def test_wizard_sleep():
+    wizard = Wizard()
+    mana = wizard.mana
+    food = wizard.food
+    wizard.sleep()
+    assert wizard.mana > mana, "Wizard's mana did not increase after sleeping."
+    assert wizard.food < food, "Wizard's food did not decrease after sleeping."
