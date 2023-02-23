@@ -16,7 +16,7 @@ class Wizard:
     gold: int = 25
     alive: bool = True
 
-    def update(self, action):
+    def update(self, action="undefined"):
         self.food -= 1
         if self.food < 0 or self.mana < 0:
             self.alive = False
