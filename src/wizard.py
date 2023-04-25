@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 import platform
 import os
+import sys
 import time
 
 
@@ -76,17 +77,22 @@ def main():
             _ = os.system("clear")
         print(wizard)
         print(f"{wizard.name}'s stuff: {wizard.inventory}")
-        options = ["sleep", "eat", "cast"]
+        options = ["sleep", "eat", "cast", "save", "exit"]
         user_input = ""
         input_message = f"What will {wizard.name} do?\n"
         for item in options:
             input_message += f"* {item}\n"
         input_message += "Your choice: "
-        while user_input.lower() not in options:
-            user_input = input(input_message)
-        print(f"{wizard.name} will " + user_input)
-        time.sleep(2)
-        wizard.update(user_input)
+        user_input = input(input_message).lower()
+        match user_input:
+            case action if action in ["sleep", "eat", "cast"]:
+                print(f"{wizard.name} will " + user_input)
+                time.sleep(0.5)
+                wizard.update(user_input)
+            case "save":
+                pass
+            case "exit":
+                sys.exit()
     else:
         print(f"Oh no! {wizard.name} has died!")
 
