@@ -3,6 +3,7 @@ import platform
 import os
 import sys
 import time
+import pickle
 
 
 @dataclass
@@ -69,7 +70,13 @@ class Shop:
 
 
 def main():
-    wizard = Wizard()
+    try:
+        with open("save.pickle", "rb") as f:
+            wizard = pickle.load(f)
+            print("Loading save...")
+    except FileNotFoundError:
+        print("Starting new game")
+        wizard = Wizard()
     while wizard.alive:
         if platform.system() == "Windows":
             _ = os.system("cls")
@@ -90,7 +97,8 @@ def main():
                 time.sleep(0.5)
                 wizard.update(user_input)
             case "save":
-                pass
+                with open("save.pickle", "wb") as f:
+                    pickle.dump(wizard, f)
             case "exit":
                 sys.exit()
     else:
